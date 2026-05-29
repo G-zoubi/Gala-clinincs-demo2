@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gala Clinics — Dermatology & Medical Beauty in Amman</title>
+<meta name="description" content="Gala Clinics in Amman offers laser hair removal, advanced skincare, body shaping, Botox & filler, and anti-aging face treatments. Rated 4.4★ on Google." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#EC4899;
+    --on-primary:#FFFFFF;
+    --secondary:#F9A8D4;
+    --accent:#8B5CF6;
+    --bg:#FDF2F8;
+    --fg:#831843;
+    --muted:#F1EEF5;
+    --border:#FBCFE8;
+    --ring:#EC4899;
+    --ink:#3a1027;
+    --soft:#9d4f76;
+    --radius:22px;
+    --shadow-sm:0 4px 20px rgba(131,24,67,.06);
+    --shadow-md:0 18px 50px rgba(131,24,67,.10);
+    --shadow-lg:0 30px 80px rgba(131,24,67,.16);
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif;color:var(--fg);font-weight:600;line-height:1.12}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1.5px;background:var(--primary);display:inline-block}
+
+  /* ---------- Decorative blobs ---------- */
+  .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;z-index:0;pointer-events:none}
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    transition:all .4s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    margin:16px auto;max-width:var(--maxw);width:calc(100% - 32px);
+    padding:12px 14px 12px 22px;border-radius:60px;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(18px) saturate(160%);
+    -webkit-backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:var(--shadow-sm);
+    transition:all .4s cubic-bezier(.4,0,.2,1);
+  }
+  header.nav.scrolled .nav-inner{background:rgba(255,255,255,.82);box-shadow:var(--shadow-md)}
+  .logo{display:flex;align-items:center;gap:12px;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--fg)}
+  .logo .mark{
+    width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;
+    background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;
+    font-weight:700;box-shadow:0 6px 18px rgba(236,72,153,.4)
+  }
+  .logo small{display:block;font-family:'Inter';font-size:.6rem;letter-spacing:.28em;color:var(--soft);font-weight:600;text-transform:uppercase;margin-top:-2px}
+  .nav-links{display:flex;align-items:center;gap:6px}
+  .nav-links a{padding:9px 16px;border-radius:40px;font-size:.92rem;font-weight:500;color:var(--ink);transition:all .25s}
+  .nav-links a:hover{background:var(--muted);color:var(--primary)}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;cursor:pointer;border:none;
+    font-family:inherit;font-size:.95rem;font-weight:600;
+    padding:13px 26px;border-radius:40px;transition:all .3s cubic-bezier(.4,0,.2,1);
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;
+    box-shadow:0 10px 26px rgba(236,72,153,.38)
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(236,72,153,.5)}
+  .btn-ghost{background:rgba(255,255,255,.7);color:var(--fg);border:1px solid var(--border)}
+  .btn-ghost:hover{background:#fff;transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+  .hamburger span{width:24px;height:2px;background:var(--fg);border-radius:2px;transition:.3s}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:160px 0 90px;overflow:hidden}
+  .hero .blob.b1{width:520px;height:520px;background:var(--secondary);top:-120px;right:-100px}
+  .hero .blob.b2{width:440px;height:440px;background:#c4b5fd;bottom:-160px;left:-120px;opacity:.4}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;position:relative;z-index:2}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:40px;
+    background:rgba(255,255,255,.7);border:1px solid var(--border);font-size:.82rem;font-weight:500;color:var(--soft);
+    margin-bottom:24px;box-shadow:var(--shadow-sm)
+  }
+  .pill .stars{color:#f59e0b;letter-spacing:1px}
+  .hero h1{font-size:clamp(2.6rem,5.5vw,4.4rem);margin-bottom:22px}
+  .hero h1 .grad{background:linear-gradient(120deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic}
+  .hero p.lead{font-size:1.18rem;color:var(--soft);max-width:520px;margin-bottom:14px}
+  .hero .arabic{font-size:1.05rem;color:var(--soft);direction:rtl;margin-bottom:32px;font-weight:300}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px}
+  .hero-trust{display:flex;gap:30px;flex-wrap:wrap}
+  .hero-trust .item .n{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--fg);font-weight:600}
+  .hero-trust .item .l{font-size:.82rem;color:var(--soft)}
+
+  /* hero visual */
+  .hero-visual{position:relative;height:540px}
+  .hero-card-img{
+    position:absolute;inset:0;border-radius:34px;overflow:hidden;
+    background:linear-gradient(160deg,#fce7f3,#ede9fe);
+    box-shadow:var(--shadow-lg);border:6px solid #fff;
+  }
+  .hero-card-img img{width:100%;height:100%;object-fit:cover}
+  .glass-card{
+    position:absolute;background:rgba(255,255,255,.7);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255,255,255,.8);border-radius:20px;padding:16px 20px;box-shadow:var(--shadow-md);
+    display:flex;align-items:center;gap:14px;
+  }
+  .glass-card .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+  .glass-card .ti{font-weight:600;font-size:.95rem;color:var(--fg)}
+  .glass-card .su{font-size:.78rem;color:var(--soft)}
+  .fc1{top:34px;left:-28px;animation:float 6s ease-in-out infinite}
+  .fc2{bottom:40px;right:-26px;animation:float 6s ease-in-out infinite 1.5s}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+  /* ---------- Marquee strip ---------- */
+  .strip{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:18px 0;overflow:hidden;position:relative}
+  .marquee{display:flex;gap:60px;white-space:nowrap;animation:scroll 26s linear infinite;font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem}
+  .marquee span{display:inline-flex;align-items:center;gap:60px;opacity:.95}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* ---------- Section base ---------- */
+  section{position:relative}
+  .section-pad{padding:100px 0}
+  .section-head{text-align:center;max-width:680px;margin:0 auto 60px}
+  .section-head h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
+  .section-head p{color:var(--soft);font-size:1.08rem}
+
+  /* ---------- Services ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .service{
+    background:#fff;border-radius:var(--radius);padding:34px 30px;border:1px solid var(--border);
+    transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;
+  }
+  .service::after{content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.4s}
+  .service:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+  .service:hover::after{opacity:1}
+  .service .ic{
+    width:60px;height:60px;border-radius:18px;display:grid;place-items:center;margin-bottom:22px;
+    background:linear-gradient(135deg,#fce7f3,#f3e8ff);color:var(--primary);
+  }
+  .service h3{font-size:1.32rem;margin-bottom:10px}
+  .service p{color:var(--soft);font-size:.96rem;margin-bottom:18px}
+  .service .more{font-size:.88rem;font-weight:600;color:var(--primary);display:inline-flex;align-items:center;gap:6px;transition:gap .25s}
+  .service:hover .more{gap:12px}
+  .svg-icon{width:30px;height:30px;stroke:currentColor;stroke-width:1.6;fill:none}
+
+  /* ---------- About / split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .about-imgs{position:relative;height:520px}
+  .about-imgs .a{position:absolute;border-radius:26px;overflow:hidden;box-shadow:var(--shadow-md);border:5px solid #fff}
+  .about-imgs .a1{width:62%;height:72%;top:0;left:0;z-index:2}
+  .about-imgs .a2{width:54%;height:58%;bottom:0;right:0;z-index:3}
+  .about-imgs .badge{
+    position:absolute;z-index:4;bottom:28%;left:-20px;background:#fff;border-radius:20px;padding:18px 22px;
+    box-shadow:var(--shadow-lg);text-align:center;
+  }
+  .about-imgs .badge .n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--primary);font-weight:700;line-height:1}
+  .about-imgs .badge .l{font-size:.72rem;color:var(--soft);text-transform:uppercase;letter-spacing:.1em}
+  .feature-list{display:grid;gap:18px;margin-top:28px}
+  .feature-list li{display:flex;gap:16px;align-items:flex-start;list-style:none}
+  .feature-list .chk{width:30px;height:30px;border-radius:50%;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff}
+  .feature-list b{color:var(--fg);font-weight:600;display:block}
+  .feature-list span{color:var(--soft);font-size:.94rem}
+
+  /* ---------- Stats band ---------- */
+  .stats{background:linear-gradient(135deg,#fff5fb,#f5f0ff);border-radius:34px;padding:54px 40px;border:1px solid var(--border)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center}
+  .stats .n{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--primary);font-weight:700;line-height:1}
+  .stats .l{color:var(--soft);font-size:.95rem;margin-top:8px}
+
+  /* ---------- Reviews ---------- */
+  .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);transition:.3s}
+  .review:hover{box-shadow:var(--shadow-md);transform:translateY(-5px)}
+  .review .stars{color:#f59e0b;letter-spacing:2px;margin-bottom:14px}
+  .review p{color:var(--ink);font-size:1rem;margin-bottom:20px;font-style:italic}
+  .review .who{display:flex;align-items:center;gap:12px}
+  .review .av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;background:linear-gradient(135deg,var(--primary),var(--accent))}
+  .review .who b{color:var(--fg);font-size:.95rem;display:block}
+  .review .who span{color:var(--soft);font-size:.82rem}
+  .gsrc{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);padding:10px 22px;border-radius:40px;box-shadow:var(--shadow-sm);margin-top:40px}
+  .gsrc .stars{color:#f59e0b;letter-spacing:1px}
+
+  /* ---------- Contact ---------- */
+  .contact{background:linear-gradient(160deg,#fff,#fdf2f8)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch}
+  .info-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm)}
+  .map-frame{width:100%;height:100%;min-height:340px;border:0;border-radius:16px;filter:saturate(1.05)}
+  .info-row{display:flex;gap:18px;align-items:flex-start;padding:20px 14px;border-bottom:1px solid var(--muted)}
+  .info-row:last-child{border-bottom:none}
+  .info-row .ic{width:48px;height:48px;border-radius:14px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#fce7f3,#ede9fe);color:var(--primary)}
+  .info-row b{display:block;color:var(--fg);font-weight:600;margin-bottom:2px}
+  .info-row span,.info-row a{color:var(--soft);font-size:.95rem}
+  .info-row a:hover{color:var(--primary)}
+  .open-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;background:#fee2e2;color:#b91c1c;margin-left:6px}
+
+  /* booking form */
+  .form-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:36px;box-shadow:var(--shadow-md)}
+  .form-card h3{font-size:1.6rem;margin-bottom:6px}
+  .form-card .sub{color:var(--soft);margin-bottom:24px;font-size:.95rem}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.85rem;font-weight:600;color:var(--fg);margin-bottom:7px}
+  .field input,.field select,.field textarea{
+    width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--border);background:#fffafd;
+    font-family:inherit;font-size:.95rem;color:var(--ink);transition:.25s
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(236,72,153,.12);background:#fff}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-card .btn-primary{width:100%;justify-content:center;margin-top:6px}
+  .form-note{font-size:.8rem;color:var(--soft);text-align:center;margin-top:14px}
+  .ok-msg{display:none;background:#ecfdf5;border:1px solid #a7f3d0;color:#047857;padding:14px;border-radius:14px;font-size:.92rem;text-align:center;margin-top:16px}
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{position:relative;overflow:hidden;border-radius:36px;padding:70px 50px;text-align:center;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:var(--shadow-lg)}
+  .cta-banner .blob{opacity:.25}
+  .cta-banner .bb1{width:340px;height:340px;background:#fff;top:-120px;left:-60px}
+  .cta-banner .bb2{width:300px;height:300px;background:#fde68a;bottom:-140px;right:-40px;opacity:.3}
+  .cta-banner h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin-bottom:14px;position:relative;z-index:2}
+  .cta-banner p{color:rgba(255,255,255,.9);font-size:1.1rem;margin-bottom:30px;position:relative;z-index:2}
+  .cta-banner .btn{position:relative;z-index:2}
+  .cta-banner .btn-white{background:#fff;color:var(--primary)}
+  .cta-banner .btn-white:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.18)}
+  .cta-banner .btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,.7);color:#fff}
+  .cta-banner .btn-outline:hover{background:rgba(255,255,255,.15)}
+
+  /* ---------- Footer ---------- */
+  footer{background:#2b0a1c;color:#e9c9da;padding:70px 0 30px;margin-top:0}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;margin-bottom:50px}
+  footer .logo{color:#fff}
+  footer .logo small{color:#c98aab}
+  footer p.desc{color:#c98aab;margin-top:18px;font-size:.94rem;max-width:300px}
+  footer h4{color:#fff;font-family:'Inter';font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:20px}
+  footer ul{list-style:none;display:grid;gap:12px}
+  footer ul a{color:#c98aab;font-size:.94rem;transition:.25s}
+  footer ul a:hover{color:var(--secondary)}
+  .socials{display:flex;gap:12px;margin-top:20px}
+  .socials a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff;transition:.3s}
+  .socials a:hover{background:linear-gradient(135deg,var(--primary),var(--accent));transform:translateY(-3px)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#a86d8c;font-size:.85rem}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(34px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:980px){
+    .hero-grid,.split,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .hero-visual{height:420px;max-width:480px;margin:0 auto;width:100%}
+    .services-grid,.reviews-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .about-imgs{max-width:460px;margin:0 auto;width:100%}
+  }
+  @media(max-width:680px){
+    .nav-links{display:none}
+    .hamburger{display:flex}
+    .nav-cta .btn-ghost{display:none}
+    .services-grid,.reviews-grid,.stats-grid,.field-row{grid-template-columns:1fr}
+    .stats-grid{gap:34px}
+    .foot-grid{grid-template-columns:1fr}
+    .section-pad{padding:70px 0}
+    .hero{padding:130px 0 70px}
+    .cta-banner{padding:50px 26px}
+    .nav-inner{padding:10px 12px 10px 18px}
+    .mobile-menu.open{display:flex}
+  }
+  /* mobile menu */
+  .mobile-menu{display:none;flex-direction:column;gap:6px;position:fixed;top:84px;left:16px;right:16px;z-index:99;
+    background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:24px;padding:18px;box-shadow:var(--shadow-lg)}
+  .mobile-menu a{padding:12px 16px;border-radius:14px;font-weight:500;color:var(--ink)}
+  .mobile-menu a:hover{background:var(--muted);color:var(--primary)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="mark">G</span>
+      <span>Gala Clinics<small>Dermatology · Amman</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+962799495952" class="btn btn-ghost">07 9949 5952</a>
+      <a href="#contact" class="btn btn-primary">Book Now</a>
+      <button class="hamburger" id="burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:+962799495952">Call 07 9949 5952</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <span class="blob b1"></span>
+  <span class="blob b2"></span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="pill"><span class="stars">★★★★☆</span> 4.4 · 164 Google reviews</span>
+      <h1>Reveal your most <span class="grad">radiant</span> skin</h1>
+      <p class="lead">A luxury medical beauty clinic in Amman offering laser hair removal, advanced skincare, body shaping, and anti-aging treatments — guided by expert hands.</p>
+      <p class="arabic">مركز جالا للتجميل الطبي في عمّان — ليزر، عناية بالبشرة، نحت الجسم وعلاج التجاعيد</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a Consultation
+          <svg class="svg-icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">Explore Treatments</a>
+      </div>
+      <div class="hero-trust">
+        <div class="item"><div class="n">12+</div><div class="l">Years of expertise</div></div>
+        <div class="item"><div class="n">5,000+</div><div class="l">Happy clients</div></div>
+        <div class="item"><div class="n">15+</div><div class="l">Beauty treatments</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card-img">
+        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop" alt="Relaxed woman receiving a professional skincare treatment at Gala Clinics" />
+      </div>
+      <div class="glass-card fc1">
+        <div class="ic" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);color:#ec4899">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 19.3 7.2 17l.9-5.4L4.2 7.7l5.4-.8z"/></svg>
+        </div>
+        <div><div class="ti">Certified Experts</div><div class="su">Medical-grade care</div></div>
+      </div>
+      <div class="glass-card fc2">
+        <div class="ic" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#8b5cf6">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div><div class="ti">Safe & Painless</div><div class="su">Latest technology</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE STRIP ============ -->
+<div class="strip" aria-hidden="true">
+  <div class="marquee">
+    <span>Laser Hair Removal • Skincare • Body Shaping • Botox &amp; Filler • Anti-Aging • Face Lifting • </span>
+    <span>Laser Hair Removal • Skincare • Body Shaping • Botox &amp; Filler • Anti-Aging • Face Lifting • </span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Treatments</span>
+      <h2>Beauty, refined by science</h2>
+      <p>From laser technology to skin rejuvenation, every treatment at Gala is tailored to you and delivered with medical precision.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Laser Hair Removal</h3>
+        <p>Smooth, lasting results with the latest cooling laser technology — comfortable and safe for every skin tone.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18z"/><path d="M9 10c0-1 .8-2 2-2M14.5 14c-.5 1-1.5 1.6-2.5 1.6"/></svg></div>
+        <h3>Advanced Skincare</h3>
+        <p>Facials, peels and bespoke treatments that target acne, pigmentation and dullness for a luminous complexion.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M6 4c4 2 8 2 12 0M6 20c4-2 8-2 12 0M8 4v16M16 4v16"/></svg></div>
+        <h3>Body Shaping</h3>
+        <p>Non-invasive contouring and slimming treatments to sculpt, tone and define your natural silhouette.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2v6M9 5h6M5 12c0 4 3 8 7 8s7-4 7-8a7 7 0 00-14 0z"/></svg></div>
+        <h3>Botox &amp; Filler</h3>
+        <p>Subtle, natural-looking enhancement to smooth fine lines and restore youthful volume and balance.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+        <h3>Anti-Aging &amp; Lifting</h3>
+        <p>Wrinkle treatment, skin tightening and face lifting to firm, lift and rejuvenate aging skin.</p>
+        <span class="more">Learn more →</span>
+      </article>
+      <article class="service reveal">
+        <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+        <h3>Medical Beauty Care</h3>
+        <p>A full range of dermatology-led aesthetic services in a calm, hygienic and welcoming environment.</p>
+        <span class="more">Learn more →</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section-pad" id="about" style="background:linear-gradient(160deg,#fff,#fdf2f8)">
+  <div class="wrap split">
+    <div class="about-imgs reveal">
+      <div class="a a1"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=900&auto=format&fit=crop" alt="Modern, calming treatment room at Gala Clinics" /></div>
+      <div class="a a2"><img src="https://images.unsplash.com/photo-1631730486572-226d1f595b68?q=80&w=900&auto=format&fit=crop" alt="Specialist performing an aesthetic skin treatment" /></div>
+      <div class="badge"><div class="n">4.4★</div><div class="l">Google Rated</div></div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">About Gala Clinics</span>
+      <h2>Where medical expertise meets timeless elegance</h2>
+      <p style="color:var(--soft);margin-top:16px;font-size:1.05rem">Nestled in Dabouq village on Yathreb Street, Gala Clinics is a beauty destination where advanced dermatological science is paired with a warm, luxurious experience. Our team is dedicated to helping you look and feel your most confident self.</p>
+      <ul class="feature-list">
+        <li>
+          <span class="chk"><svg class="svg-icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Personalised treatment plans</b><span>Every journey begins with a tailored consultation.</span></div>
+        </li>
+        <li>
+          <span class="chk"><svg class="svg-icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>State-of-the-art technology</b><span>FDA-grade lasers and devices for safe, effective results.</span></div>
+        </li>
+        <li>
+          <span class="chk"><svg class="svg-icon" style="width:16px;height:16px" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div><b>Experienced, certified team</b><span>Skilled specialists who put your comfort and safety first.</span></div>
+        </li>
+      </ul>
+      <a href="#contact" class="btn btn-primary" style="margin-top:32px">Start Your Journey</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="section-pad" style="padding-top:0">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stats-grid">
+        <div><div class="n">4.4★</div><div class="l">Average Google rating</div></div>
+        <div><div class="n">164+</div><div class="l">Verified reviews</div></div>
+        <div><div class="n">5,000+</div><div class="l">Treatments delivered</div></div>
+        <div><div class="n">15+</div><div class="l">Specialist services</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="section-pad" id="reviews" style="background:linear-gradient(160deg,#fdf2f8,#fff)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Client Love</span>
+      <h2>Loved by clients across Amman</h2>
+      <p>Real experiences from the people who trust Gala with their beauty and skin.</p>
+    </div>
+    <div class="reviews-grid">
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p>"The team is so professional and the clinic is beautifully clean. My laser sessions were comfortable and the results are amazing."</p>
+        <div class="who"><span class="av">L</span><div><b>Lana H.</b><span>Local Guide</span></div></div>
+      </article>
+      <article class="review reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Best skincare experience in Amman. They genuinely listen and build a plan around your skin. My complexion has never looked better."</p>
+        <div class="who"><span class="av">R</span><div><b>Rana K.</b><span>Google Review</span></div></div>
+      </article>
+      <article class="review reveal">
+        <div class="stars">★★★★☆</div>
+        <p>"Lovely staff and a calming atmosphere. The Botox results looked completely natural — exactly what I wanted. Highly recommend."</p>
+        <div class="who"><span class="av">N</span><div><b>Noor A.</b><span>Google Review</span></div></div>
+      </article>
+    </div>
+    <div style="text-align:center">
+      <a href="https://www.google.com/search?q=Gala+Clinics+Amman+reviews" target="_blank" rel="noopener" class="gsrc">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.9a5 5 0 01-2.2 3.3v2.7h3.5c2-1.9 3.3-4.7 3.3-7.8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.5-2.7c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.8A11 11 0 0012 23z"/><path fill="#FBBC05" d="M5.7 14.1a6.6 6.6 0 010-4.2V7.1H2a11 11 0 000 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3 .6 4.2 1.6l3.1-3.1A11 11 0 002 7.1l3.7 2.8C6.6 7.3 9.1 5.4 12 5.4z"/></svg>
+        <span style="font-weight:600;color:var(--fg)">4.4</span>
+        <span class="stars">★★★★☆</span>
+        <span style="color:var(--soft);font-size:.9rem">· 164 Google reviews</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section-pad contact" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Book your appointment</h2>
+      <p>Reserve a consultation or treatment — we'll confirm your booking by phone.</p>
+    </div>
+    <div class="contact-grid">
+      <!-- left: info + map -->
+      <div class="reveal" style="display:flex;flex-direction:column;gap:24px">
+        <div class="info-card">
+          <div class="info-row">
+            <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><b>Address</b><span>Yathreb St., Dabouq village, Amman, Jordan</span></div>
+          </div>
+          <div class="info-row">
+            <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
+            <div><b>Phone</b><a href="tel:+962799495952">07 9949 5952</a></div>
+          </div>
+          <div class="info-row">
+            <div class="ic"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <div><b>Hours <span class="open-tag">Closed · Opens 9 AM Sat</span></b><span>Sat–Thu: 9:00 AM – 8:00 PM · Friday: Closed</span></div>
+          </div>
+        </div>
+        <div class="info-card" style="flex:1;padding:10px">
+          <iframe class="map-frame" title="Map to Gala Clinics, Amman" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://maps.google.com/maps?q=Gala%20Clinics%20Yathreb%20St%20Amman&t=&z=14&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
+      </div>
+      <!-- right: form -->
+      <div class="form-card reveal">
+        <h3>Request a booking</h3>
+        <p class="sub">Fill in your details and our team will reach out to confirm.</p>
+        <form id="bookForm" novalidate>
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Full name *</label>
+              <input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone *</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="07 ____ ____" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="service">Treatment of interest</label>
+            <select id="service" name="service">
+              <option>Laser Hair Removal</option>
+              <option>Advanced Skincare</option>
+              <option>Body Shaping</option>
+              <option>Botox &amp; Filler</option>
+              <option>Anti-Aging &amp; Lifting</option>
+              <option>Other / Consultation</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="msg" rows="3" placeholder="Preferred date or any questions..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Request Appointment
+            <svg class="svg-icon" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-note">Or call us directly at <a href="tel:+962799495952" style="color:var(--primary);font-weight:600">07 9949 5952</a></p>
+          <div class="ok-msg" id="okMsg">Thank you! Your request has been noted — we'll call you shortly to confirm. 💖</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="wrap" style="padding-bottom:90px">
+  <div class="cta-banner reveal">
+    <span class="blob bb1"></span>
+    <span class="blob bb2"></span>
+    <h2>Your glow-up starts here</h2>
+    <p>Book your complimentary consultation and discover the Gala difference.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="#contact" class="btn btn-white">Book a Consultation</a>
+      <a href="tel:+962799495952" class="btn btn-outline">Call 07 9949 5952</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#home" class="logo"><span class="mark">G</span><span>Gala Clinics<small>Dermatology · Amman</small></span></a>
+        <p class="desc">A luxury medical beauty clinic offering laser, skincare, body shaping and anti-aging treatments in Amman, Jordan.</p>
+        <div class="socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="svg-icon" style="width:20px;height:20px" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="svg-icon" style="width:20px;height:20px" viewBox="0 0 24 24"><path d="M15 3h-3a4 4 0 00-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="tel:+962799495952" aria-label="Call">
+            <svg class="svg-icon" style="width:20px;height:20px" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.5c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="#services">Laser Hair Removal</a></li>
+          <li><a href="#services">Advanced Skincare</a></li>
+          <li><a href="#services">Body Shaping</a></li>
+          <li><a href="#services">Botox &amp; Filler</a></li>
+          <li><a href="#services">Anti-Aging</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="https://maps.google.com/?q=Gala+Clinics+Amman" target="_blank" rel="noopener">Yathreb St., Dabouq, Amman</a></li>
+          <li><a href="tel:+962799495952">07 9949 5952</a></li>
+          <li><span style="color:#c98aab">Sat–Thu · 9 AM – 8 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Gala Clinics. All rights reserved.</span>
+      <span>Made with care in Amman, Jordan</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Form
+  const form = document.getElementById('bookForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const phone = form.phone.value.trim();
+    if (!name || !phone) {
+      if (!name) form.name.focus(); else form.phone.focus();
+      return;
+    }
+    document.getElementById('okMsg').style.display = 'block';
+    form.reset();
+  });
+</script>
+</body>
+</html>
